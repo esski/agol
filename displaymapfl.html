@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -23,7 +24,7 @@
         // Add module for FeatureLayer
         "esri/layers/FeatureLayer"
 
-    ], function(esriConfig,Map, MapView, FeatureLayer) {
+    ], function(esriConfig, Map, MapView, FeatureLayer) {
 
     esriConfig.apiKey = "AAPKf9083aa252be40959ad919f505552987X7qO6dJmJeR5qPdI6NQ3uyRgguN3kTU2vVzalVnhBH5uWL6Q6eymT4xckXw-L_cZ";
 
@@ -44,6 +45,20 @@
     });
 
     map.add(trailheadsLayer);
+
+    //Trails feature layer (lines)
+    const trailsLayer = new FeatureLayer({
+        url: "https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trails/FeatureServer/0"
+    });
+
+    map.add(trailsLayer, 0);
+
+    // Parks and open spaces (polygons)
+    const parksLayer = new FeatureLayer({
+        url: "https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Parks_and_Open_Space/FeatureServer/0"
+    });
+
+    map.add(parksLayer, 0);
 
     });
   </script>
