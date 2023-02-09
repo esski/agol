@@ -29,7 +29,7 @@
 
             ], function(esriConfig, Map, MapView, Graphic, GraphicsLayer, FeatureLayer) {
 
-        // esriConfig.apiKey = "AAPKf9083aa252be40959ad919f505552987X7qO6dJmJeR5qPdI6NQ3uyRgguN3kTU2vVzalVnhBH5uWL6Q6eymT4xckXw-L_cZ";
+        esriConfig.apiKey = "AAPKf9083aa252be40959ad919f505552987X7qO6dJmJeR5qPdI6NQ3uyRgguN3kTU2vVzalVnhBH5uWL6Q6eymT4xckXw-L_cZ";
 
         const map = new Map({
             basemap: "hybrid" //Basemap layer service
@@ -37,8 +37,8 @@
 
         const view = new MapView({
             map: map,
-            center: [-71.206861, 46.809066], //Longitude, latitude
-            zoom: 10,
+            center: [-71.206861, 46.809066], //Longitude, latitude; around Quebec City, PQ
+            zoom: 11,
             container: "viewDiv"
         });
 
@@ -47,7 +47,7 @@
         map.add(graphicsLayer);
 
  
-        // Create a polygon geometry
+        // Create a polygon geometry of boat (used https://geojson.io/ to get coordinates)
         const polygon = {
             type: "polygon",
             rings: [
@@ -66,23 +66,24 @@
             ]
         };
 
+        // Fill symbology for boat polygon
         const simpleFillSymbol = {
             type: "simple-fill",
-            color: [227, 139, 79, 0.8],  // Orange, opacity 80%
+            color: [217, 130, 212, 0.8],  // Magenta, opacity 80%
             outline: {
                 color: [255, 255, 255],
                 width: 1
             }
         };
 
-        // For pop-up display for polygon graphic
+        // For pop-up display for boat polygon
         const popupTemplate = {
             title: "{Name}",
             content: "{Description}"
         }
         const attributes = {
-            Name: "Boat",
-            Description: "Ride the waves with me~"
+            Name: "Knot for Sail",
+            Description: "Come seas the moment with me because it is a-boat to be wild~"
         }
 
         const polygonGraphic = new Graphic({
@@ -95,7 +96,8 @@
         });
         graphicsLayer.add(polygonGraphic);
 
-        //St. Lawrence River feature layer (line)
+        // St. Lawrence River feature layer (line)
+        // Testing use of data hosted on my account on ArcGIS Online
         const StLarenceRiverLayer = new FeatureLayer({
             url: "https://services1.arcgis.com/pMeXRvgWClLJZr3s/ArcGIS/rest/services/StLawrenceRiver/FeatureServer/0"
         });
