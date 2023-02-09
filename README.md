@@ -8,3 +8,4 @@ Contains files for Week 3 and 4 Labs.
     - https://fleming.maps.arcgis.com/home/item.html?id=664151edf4f24b1f8a9d7b1b986213ef
   - URL 3: REST API: 
     - https://services1.arcgis.com/pMeXRvgWClLJZr3s/ArcGIS/rest/services/tree_survey_data/FeatureServer?token=
+- Tutorials for ArcGIS JavaScript API
