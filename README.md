@@ -9,3 +9,4 @@ Contains files for Week 3 and 4 Labs.
   - URL 3: REST API: 
     - https://services1.arcgis.com/pMeXRvgWClLJZr3s/ArcGIS/rest/services/tree_survey_data/FeatureServer?token=
 - Tutorials for ArcGIS JavaScript API
+- Modified Valentine's ArcGIS JavaScript API Tutorial
