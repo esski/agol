@@ -46,9 +46,88 @@
         const graphicsLayer = new GraphicsLayer();
         map.add(graphicsLayer);
 
+        // Create line geometry of message (lines for letters) (used https://geojson.io/ to get coordinates)
+        const polylineMessage = {
+            type: "polyline",
+            paths: [
+                    [
+                    // C
+                    [-71.233863739384, 46.98356798152045],
+                    [-71.254828427963, 46.99002668548309],
+                    [-71.26294379128409, 46.977569914782464],
+                    [-71.25077074630242, 46.95818694644328],
+                    [-71.23318745910686, 46.95172439612571],
+                    [-71.22507209578622, 46.96418718720804]
+                ], [
+                    // L
+                    [-71.21492789163509, 46.992333176345284],
+                    [-71.20884136914398, 46.956802179933504],
+                    [-71.18449527918114, 46.958648527316114]
+                ], [
+                    // I
+                    [-71.17232223419995, 46.989565375366055],
+                    [-71.17029339336945, 46.95772536158856]
+                ], [
+                    // C
+                    [-71.12565889510431, 46.98172249419383],
+                    [-71.13580309925545, 46.9960233546862],
+                    [-71.15068126534383, 46.98772009508218],
+                    [-71.15406266672768, 46.959110104207156],
+                    [-71.13986078091601, 46.952186032744976],
+                    [-71.12633517538096, 46.95957167711629]
+                ], [
+                    // K
+                    [-71.10063652486431, 46.991871886135925],
+                    [-71.11213328956929, 46.95033946237652],
+                    [-71.1060467670787, 46.97110970575952],
+                    [-71.07088019268754, 46.98218387199793],
+                    [-71.10401792624818, 46.97064823239512],
+                    [-71.08981604043647, 46.95080111094154]
+                ]
+            ]
+        };
+        const simpleLineSymbol = {
+            type: "simple-line",
+            color: [0, 184, 205], // Orange
+            width: 2
+        };
+
+        const polylineGraphic = new Graphic({
+            geometry: polylineMessage,
+            symbol: simpleLineSymbol
+        });
+        graphicsLayer.add(polylineGraphic);
+
+        // Create a polygon geometry of arrow (used https://geojson.io/ to get coordinates)
+        const polygonArrow = {
+            type: "polygon",
+            rings: [
+                [-71.16217803004835, 46.94156738306927],
+                [-71.15271010617388, 46.90138213209471],
+                [-71.15843683995182, 46.90078730273757],
+                [-71.15002092847155, 46.894299406776526],
+                [-71.14678403944072, 46.901819395626234],
+                [-71.15131568408376, 46.901377072535496],
+                [-71.16217803004835, 46.94156738306927]
+            ]
+        };
+
+        const simpleFillSymbolArrow = {
+            type: "simple-fill",
+            color: [227, 139, 79, 0.8],  // Orange, opacity 80%
+            outline: {
+                color: [255, 255, 255],
+                width: 1
+            }
+        };
+        const polygonGraphicArrow = new Graphic({
+            geometry: polygonArrow,
+            symbol: simpleFillSymbolArrow,
+        });
+        graphicsLayer.add(polygonGraphicArrow);
  
         // Create a polygon geometry of boat (used https://geojson.io/ to get coordinates)
-        const polygon = {
+        const polygonBoat = {
             type: "polygon",
             rings: [
                 [-71.16179264394404, 46.84588720523416],
@@ -67,7 +146,7 @@
         };
 
         // Fill symbology for boat polygon
-        const simpleFillSymbol = {
+        const simpleFillSymbolBoat = {
             type: "simple-fill",
             color: [217, 130, 212, 0.8],  // Magenta, opacity 80%
             outline: {
@@ -81,20 +160,66 @@
             title: "{Name}",
             content: "{Description}"
         }
-        const attributes = {
+        const attributesBoat = {
             Name: "Knot for Sail",
             Description: "Come seas the moment with me because it is a-boat to be wild~"
         }
 
-        const polygonGraphic = new Graphic({
-            geometry: polygon,
-            symbol: simpleFillSymbol,
+        const polygonGraphicBoat = new Graphic({
+            geometry: polygonBoat,
+            symbol: simpleFillSymbolBoat,
 
-            attributes: attributes,
+            attributes: attributesBoat,
             popupTemplate: popupTemplate
 
         });
-        graphicsLayer.add(polygonGraphic);
+        graphicsLayer.add(polygonGraphicBoat);
+
+        // Create a polygon geometry of a heart (used https://geojson.io/ to get coordinates)
+        const polygonHeart = {
+            type: "polygon",
+            rings: [
+                [-71.11129848055235, 46.87044796131772],
+                [-71.11446716203812, 46.87605448494435],
+                [-71.1205249354672, 46.879813076208364],
+                [-71.12798065661016, 46.879048638296865],
+                [-71.13357244746743, 46.87401581684813],
+                [-71.13394523352457, 46.866051527436525],
+                [-71.12061813198139, 46.85145788349186],
+                [-71.09713261038074, 46.857066390589466],
+                [-71.09060885438039, 46.86350270522905],
+                [-71.09023606832326, 46.86987453384171],
+                [-71.09545507312347, 46.87369726796206],
+                [-71.10356316986646, 46.8733150068027],
+                [-71.11129848055235, 46.87044796131772]
+            ]
+        };
+
+        // Fill symbology for heart polygon
+        const simpleFillSymbolHeart = {
+            type: "simple-fill",
+            color: [227, 79, 168, 0.8],  // Pink, opacity 80%
+            outline: {
+                color: [255, 255, 255],
+                width: 1
+            }
+        };
+
+        // Pop-up attribute for heart polygon (uses same template as boat polygon)
+        const attributesHeart = {
+            Name: "To: My Love",
+            Description: "Happy Valentine's Day!"
+        }
+
+        const polygonGraphicHeart = new Graphic({
+            geometry: polygonHeart,
+            symbol: simpleFillSymbolHeart,
+
+            attributes: attributesHeart,
+            popupTemplate: popupTemplate
+
+        });
+        graphicsLayer.add(polygonGraphicHeart);
 
         // St. Lawrence River feature layer (line)
         // Testing use of data hosted on my account on ArcGIS Online
